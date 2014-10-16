@@ -1,13 +1,5 @@
-		<div id="footer">
-			&copy;<?php echo date("Y"); echo " "; bloginfo('name'); ?>
-		</div>
-
+            <div id="footer">&copy;<?php echo date("Y"); echo " "; bloginfo('name'); ?></div>
 	</div>
-
-	<?php wp_footer(); ?>
-	
-	<!-- Don't forget analytics -->
-	
+    <?php wp_footer(); ?>	
 </body>
-
 </html>
