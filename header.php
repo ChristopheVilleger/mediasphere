@@ -24,8 +24,13 @@
 				<?php endif; ?>
 			</nav>
 		</header>
+
+		<?php
+		if(is_home() )
+			ms_homepage();
+		?>
+
 		<div class="description"><?php bloginfo('description'); ?></div>
 
-		<?php echo ms_homepage();?>
 		<!-- Posts  -->
 		<!-- Posts  -->
