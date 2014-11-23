@@ -1,318 +1,100 @@
-<?php
-    //RSS links
-    automatic_feed_links();
+	<?php
+		//Libs
+	require_once( get_template_directory() . '/inc/homepage.inc.php' );
+	require_once( get_template_directory() . '/inc/cinematheque.inc.php' );
+	require_once( get_template_directory() . '/inc/admin.inc.php' );
+	require_once( get_template_directory() . '/inc/customTheme.inc.php' );
+	require_once( get_template_directory() . '/inc/install.inc.php' );
 
-    //jQuery
-    //if ( !is_admin() ) {
-        wp_deregister_script('jquery');
-        wp_register_script('jquery', ("//code.jquery.com/jquery-1.11.0.min.js"), false);
-        wp_enqueue_script('jquery');
-    //}
-	
-    // Clean up the <head>
-    function removeHeadLinks() {
-        remove_action('wp_head', 'rsd_link');
-        remove_action('wp_head', 'wlwmanifest_link');
-    }
-    add_action('init', 'removeHeadLinks');
-    remove_action('wp_head', 'wp_generator');
-    
-    if (function_exists('register_sidebar')) {
-    	register_sidebar(array(
-    		'name' => 'Sidebar Widgets',
-    		'id'   => 'sidebar-widgets',
-    		'description'   => 'Widgets pour la sidebar.',
-    		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-    		'after_widget'  => '</div>',
-    		'before_title'  => '<h2>',
-    		'after_title'   => '</h2>'
-    	));
-    }
-    
-    /*
-     * Theme Customization
-     */
-    function mediasphere_customize_register( $wp_customize ) {
-        //All our sections, settings, and controls will be added here
-        $wp_customize->add_section('mediasphere_color', array(
-            'title'    => __('Couleurs', 'mediasphere'),
-            'priority' => 100, 
-        ));
-        
-        $wp_customize->add_section('mediasphere_banner', array(
-            'title'    => __('Bannière', 'mediasphere'),
-            'priority' => 101, 
-        ));
-        
-        $wp_customize->add_section('mediasphere_background', array(
-            'title'    => __('Image d\'arrière plan', 'mediasphere'),
-            'priority' => 102, 
-        ));
-        
-        $wp_customize->add_section('mediasphere_disposition', array(
-            'title'    => __('Disposition', 'mediasphere'),
-            'priority' => 103, 
-        ));
-        
 
-        //  =============================
-        //  = Section mediasphere_color =
-        //  =============================
-        
-        $wp_customize->add_setting('mediasphere_theme_options[link_color1]', array(
-            'default'           => '000',
-            'sanitize_callback' => 'sanitize_hex_color',
-            'capability'        => 'edit_theme_options',
-            'type'           => 'option',
+	global $wpdb;
+	$table_name = $wpdb->prefix. "mediasphere_settings";
 
-        ));
+	//
+	//
+	//RSS links
+	automatic_feed_links();
 
-        $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'link_color1', array(
-            'label'    => __('Couleur 1', 'mediasphere'),
-            'section'  => 'mediasphere_color',
-            'settings' => 'mediasphere_theme_options[link_color1]',
-        )));
-        
-        
-        $wp_customize->add_setting('mediasphere_theme_options[link_color2]', array(
-            'default'           => '000',
-            'sanitize_callback' => 'sanitize_hex_color',
-            'capability'        => 'edit_theme_options',
-            'type'           => 'option',
+	wp_deregister_script('jquery');
+	wp_register_script('jquery', ("//code.jquery.com/jquery-1.11.0.min.js"), false);
+	wp_enqueue_script('jquery');
 
-        ));
-        
-        $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'link_color2', array(
-            'label'    => __('Couleur 2', 'mediasphere'),
-            'section'  => 'mediasphere_color',
-            'settings' => 'mediasphere_theme_options[link_color2]',
-        )));
-        
-        
-        //  ==============================
-        //  = Section mediasphere_banner =
-        //  ==============================
-        
-        $wp_customize->add_setting('mediasphere_theme_options[image_upload_banner]', array(
-            'default'           => get_bloginfo(template_url) . '/images/default-banner.jpg',
-            'capability'        => 'edit_theme_options',
-            'type'           => 'option',
 
-        ));
+	add_action(	'admin_menu', 'ms_theme_menu');
+	add_action( 'wp_enqueue_scripts', 'add_ms_css' );
+	add_action( 'wp_enqueue_scripts', 'add_ms_js' );
+	add_action( 'admin_footer', 'add_ms_js');
 
-        $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'image_upload_banner', array(
-            'label'    => __('Bannière du thème', 'mediasphere'),
-            'section'  => 'mediasphere_banner',
-            'settings' => 'mediasphere_theme_options[image_upload_banner]',
-        )));
-        
-        
-        //  ==================================
-        //  = Section mediasphere_background =
-        //  ==================================
-        
-        $wp_customize->add_setting('mediasphere_theme_options[image_upload_background]', array(
-            'default'           => get_bloginfo(template_url) . '/images/default-wallpaper.jpg',
-            'capability'        => 'edit_theme_options',
-            'type'           => 'option',
 
-        ));
 
-        $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'image_upload_background', array(
-            'label'    => __('Image d\'arrière plan', 'mediasphere'),
-            'section'  => 'mediasphere_background',
-            'settings' => 'mediasphere_theme_options[image_upload_background]',
-        )));
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        $wp_customize->add_setting('themename_theme_options[text_test]', array(
-//            'default'        => 'Arse!',
-//            'capability'     => 'edit_theme_options',
-//            'type'           => 'option',
-//
-//        ));
-//
-//        $wp_customize->add_control('themename_text_test', array(
-//            'label'      => __('Text Test', 'themename'),
-//            'section'    => 'mediasphere_banner',
-//            'settings'   => 'themename_theme_options[text_test]',
-//        ));
-//
-//        //  =============================
-//        //  = Radio Input               =
-//        //  =============================
-//        $wp_customize->add_setting('themename_theme_options[color_scheme]', array(
-//            'default'        => 'value2',
-//            'capability'     => 'edit_theme_options',
-//            'type'           => 'option',
-//        ));
-//
-//        $wp_customize->add_control('mediasphere_banner', array(
-//            'label'      => __('Color Scheme', 'themename'),
-//            'section'    => 'mediasphere_banner',
-//            'settings'   => 'themename_theme_options[color_scheme]',
-//            'type'       => 'radio',
-//            'choices'    => array(
-//                'value1' => 'Choice 1',
-//                'value2' => 'Choice 2',
-//                'value3' => 'Choice 3',
-//            ),
-//        ));
-//
-//        //  =============================
-//        //  = Checkbox                  =
-//        //  =============================
-//        $wp_customize->add_setting('themename_theme_options[checkbox_test]', array(
-//            'capability' => 'edit_theme_options',
-//            'type'       => 'option',
-//        ));
-//
-//        $wp_customize->add_control('display_header_text', array(
-//            'settings' => 'themename_theme_options[checkbox_test]',
-//            'label'    => __('Display Header Text'),
-//            'section'  => 'mediasphere_banner',
-//            'type'     => 'checkbox',
-//        ));
-//
-//
-//        //  =============================
-//        //  = Select Box                =
-//        //  =============================
-//         $wp_customize->add_setting('themename_theme_options[header_select]', array(
-//            'default'        => 'value2',
-//            'capability'     => 'edit_theme_options',
-//            'type'           => 'option',
-//
-//        ));
-//        $wp_customize->add_control( 'example_select_box', array(
-//            'settings' => 'themename_theme_options[header_select]',
-//            'label'   => 'Select Something:',
-//            'section' => 'mediasphere_banner',
-//            'type'    => 'select',
-//            'choices'    => array(
-//                'value1' => 'Choice 1',
-//                'value2' => 'Choice 2',
-//                'value3' => 'Choice 3',
-//            ),
-//        ));
-//
-//
-//        //  =============================
-//        //  = Image Upload              =
-//        //  =============================
-//        $wp_customize->add_setting('themename_theme_options[image_upload_test]', array(
-//            'default'           => 'image.jpg',
-//            'capability'        => 'edit_theme_options',
-//            'type'           => 'option',
-//
-//        ));
-//
-//        $wp_customize->add_control( new WP_Customize_Image_Control($wp_customize, 'image_upload_test', array(
-//            'label'    => __('Image Upload Test', 'themename'),
-//            'section'  => 'mediasphere_banner',
-//            'settings' => 'themename_theme_options[image_upload_test]',
-//        )));
-//
-//        //  =============================
-//        //  = File Upload               =
-//        //  =============================
-//        $wp_customize->add_setting('themename_theme_options[upload_test]', array(
-//            'default'           => 'arse',
-//            'capability'        => 'edit_theme_options',
-//            'type'           => 'option',
-//
-//        ));
-//
-//        $wp_customize->add_control( new WP_Customize_Upload_Control($wp_customize, 'upload_test', array(
-//            'label'    => __('Upload Test', 'themename'),
-//            'section'  => 'mediasphere_banner',
-//            'settings' => 'themename_theme_options[upload_test]',
-//        )));
-//
-//
-//        //  =============================
-//        //  = Color Picker              =
-//        //  =============================
-//        $wp_customize->add_setting('themename_theme_options[link_color]', array(
-//            'default'           => '000',
-//            'sanitize_callback' => 'sanitize_hex_color',
-//            'capability'        => 'edit_theme_options',
-//            'type'           => 'option',
-//
-//        ));
-//
-//        $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'link_color', array(
-//            'label'    => __('Link Color', 'themename'),
-//            'section'  => 'mediasphere_banner',
-//            'settings' => 'themename_theme_options[link_color]',
-//        )));
-//
-//
-//        //  =============================
-//        //  = Page Dropdown             =
-//        //  =============================
-//        $wp_customize->add_setting('themename_theme_options[page_test]', array(
-//            'capability'     => 'edit_theme_options',
-//            'type'           => 'option',
-//
-//        ));
-//
-//        $wp_customize->add_control('themename_page_test', array(
-//            'label'      => __('Page Test', 'themename'),
-//            'section'    => 'mediasphere_banner',
-//            'type'    => 'dropdown-pages',
-//            'settings'   => 'themename_theme_options[page_test]',
-//        ));
-//
-//        // =====================
-//        //  = Category Dropdown =
-//        //  =====================
-//        $categories = get_categories();
-//            $cats = array();
-//            $i = 0;
-//            foreach($categories as $category){
-//                    if($i==0){
-//                            $default = $category->slug;
-//                            $i++;
-//                    }
-//                    $cats[$category->slug] = $category->name;
-//            }
-//
-//            $wp_customize->add_setting('_s_f_slide_cat', array(
-//                    'default'        => $default
-//            ));
-//            $wp_customize->add_control( 'cat_select_box', array(
-//                    'settings' => '_s_f_slide_cat',
-//                    'label'   => 'Select Category:',
-//                    'section'  => '_s_f_home_slider',
-//                    'type'    => 'select',
-//                    'choices' => $cats,
-//            ));
-        }
-    add_action( 'customize_register', 'mediasphere_customize_register' );
-?>
+	function add_ms_css() {
+		wp_register_style( 'prefix-style',  get_template_directory_uri().'/public/css/ms-style.css' );
+		wp_register_style( 'font-awesome',  get_template_directory_uri().'/public/css/font-awesome.min.css' );
+		wp_enqueue_style( 'prefix-style' );
+		wp_enqueue_style( 'font-awesome' );
+	}
+
+	function add_ms_js() {
+		global $wp_scripts;
+
+		wp_enqueue_script('jquery-ui-core');
+		wp_enqueue_script('jquery-ui-tabs');
+		wp_enqueue_script('jquery-ui-sortable');
+		$queryui = $wp_scripts->query('jquery-ui-core');
+		$url = "http://ajax.googleapis.com/ajax/libs/jqueryui/".$queryui->ver."/themes/smoothness/jquery-ui.css";
+
+		wp_enqueue_style('jquery-ui-smoothness', $url, false, null);
+		wp_register_script( 'prefix-js', get_template_directory_uri().'/public/js/ms-core.js' );
+		wp_enqueue_script( 'prefix-js' );
+	}
+
+		// Clean up the <head>
+	function removeHeadLinks() {
+		remove_action('wp_head', 'rsd_link');
+		remove_action('wp_head', 'wlwmanifest_link');
+	}
+	add_action('init', 'removeHeadLinks');
+	remove_action('wp_head', 'wp_generator');
+
+	if (function_exists('register_sidebar')) {
+		register_sidebar(array(
+			'name' => 'Sidebar Widgets',
+			'id'   => 'sidebar-widgets',
+			'description'   => 'Widgets pour la sidebar.',
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h2>',
+			'after_title'   => '</h2>'
+			));
+	}
+
+	/**
+	*
+	* Page d'administration du theme
+	*
+	**/
+
+	/*==========  Settings data   ==========*/
+	function getMediaSphereSettings(  )
+	{
+		global $wpdb;
+		$table_name = $wpdb->prefix. "mediasphere_settings";
+		$results = $wpdb->get_results("SELECT * FROM ".$table_name.";");
+
+		// Selecting only the first table
+		$data = $results[0];
+		// Setting the variables
+		$settings['time_duration'] = $data->time_duration;
+
+		$settings['autoplay'] = $data->autoplay;
+		return $settings;
+	}
+
+/**
+	* Theme Option Page Example
+	*/
+	function ms_theme_menu()
+	{
+		add_theme_page( 'MS Settings', 'MS Settings', 'manage_options', 'functions.php', 'mediasphere_settings');
+	}
+	register_nav_menus( array(	'ms_top_menu' => 'Menu navigation top',) );
