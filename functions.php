@@ -8,7 +8,7 @@
 
 
 	global $wpdb;
-	$table_name = $wpdb->prefix. "mediasphere_settings";
+	$table_name = $wpdb->prefix. "mediasphere";
 
 	//
 	//
@@ -20,10 +20,25 @@
 	wp_enqueue_script('jquery');
 
 
-	add_action(	'admin_menu', 'ms_theme_menu');
-	add_action( 'wp_enqueue_scripts', 'add_ms_css' );
-	add_action( 'wp_enqueue_scripts', 'add_ms_js' );
-	add_action( 'admin_footer', 'add_ms_js');
+  function setup_theme_admin_menus() {
+    add_submenu_page('themes.php', 
+        'cinematheque_elements', 'Paramétrages cinémathèque', 'manage_options', 
+        'cinematheque_elements', 'theme_mediasphere_settings');
+  }
+
+  function theme_mediasphere_settings() {
+    include('form.php');
+  }
+
+  // This tells WordPress to call the function named "setup_theme_admin_menus"
+  // when it's time to create the menu pages.
+  add_action('admin_menu', 'setup_theme_admin_menus');
+  add_action('admin_menu', 'createMediaSphereTable');
+
+	add_action('admin_menu', 'ms_theme_menu');
+	add_action('wp_enqueue_scripts', 'add_ms_css' );
+	add_action('wp_enqueue_scripts', 'add_ms_js' );
+	add_action('admin_footer', 'add_ms_js');
 
 
 
@@ -70,9 +85,36 @@
 
 	/**
 	*
-	* Page d'administration du theme
+	* Administration Page of the Theme
 	*
 	**/
+
+function createMediaSphereTable() {
+  global $wpdb;
+  // Creating the db
+  if ( !defined('ABSPATH') )
+    define('ABSPATH', dirname(__FILE__) . '/');
+
+  $table_name = $wpdb->prefix."mediasphere";
+
+  $sql =  "CREATE TABLE IF NOT EXISTS ".$table_name." (
+    `id` int(11) NOT NULL,
+    `name` int(11),
+    `release_date` datetime,
+    `category` varchar(36),
+    `title` varchar(36),
+    `youtube_link` varchar(36),
+    UNIQUE KEY `id` (`id`) ); ";
+
+    $wpdb->query($sql); 
+}
+
+function getEveryData() {
+  global $wpdb;
+  $table_name = $wpdb->prefix. "mediasphere";
+  $results = $wpdb->get_results("SELECT * FROM ".$table_name.";");
+  return $settings;
+}
 
 	/*==========  Settings data   ==========*/
 	function getMediaSphereSettings(  )
@@ -95,6 +137,6 @@
 	*/
 	function ms_theme_menu()
 	{
-		add_theme_page( 'MS Settings', 'MS Settings', 'manage_options', 'functions.php', 'mediasphere_settings');
+		add_theme_page( 'MS Settings', 'MS Settings', 'manage_options', 'functions.php', 'mediasphere');
 	}
 	register_nav_menus( array(	'ms_top_menu' => 'Menu navigation top',) );
