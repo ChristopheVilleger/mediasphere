@@ -4,7 +4,10 @@
 	require_once( get_template_directory() . '/inc/cinematheque.inc.php' );
 	require_once( get_template_directory() . '/inc/admin.inc.php' );
 	require_once( get_template_directory() . '/inc/customTheme.inc.php' );
+<<<<<<< HEAD
 	require_once( get_template_directory() . '/inc/install.inc.php' );
+=======
+>>>>>>> origin/master
 
 
 	global $wpdb;
@@ -97,4 +100,10 @@
 	{
 		add_theme_page( 'MS Settings', 'MS Settings', 'manage_options', 'functions.php', 'mediasphere_settings');
 	}
+<<<<<<< HEAD
 	register_nav_menus( array(	'ms_top_menu' => 'Menu navigation top',) );
+=======
+
+
+	?>
+>>>>>>> origin/master

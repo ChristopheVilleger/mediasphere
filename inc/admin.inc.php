@@ -23,6 +23,7 @@
 		<!-- Homepage settings -->
 		<div id="ms_admin_tabs">
 			<ul>
+<<<<<<< HEAD
 				<li><a href="#tabs-1">Général</a></li>
 				<li><a href="#tabs-2">Page d'accueil</a></li>
 				<li><a href="#tabs-3">Pages</a></li>
@@ -35,6 +36,13 @@
 
 			</div>
 			<div  id="tabs-2">
+=======
+				<li><a href="#tabs-1">Page d'accueil</a></li>
+				<li><a href="#tabs-2">Pages</a></li>
+				<li><a href="#tabs-3">Cinémathèque</a></li>
+			</ul>
+			<div  id="tabs-1">
+>>>>>>> origin/master
 				<h2>Page d'accueil</h2>
 				Vous pouvez choisir la disposition des différents éléments sur la page d'accueil. Modifier l'ordre, activer ou
 				désactiver certains modules.
