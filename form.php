@@ -1,31 +1,38 @@
 <?php
  include('helpers/get_elements.php');
+ include('helpers/form_validator.php');
 ?>
 
 <h1>Ajouter un Film</h1>
 <br />
 
 <div style="width: 40%; border: 1px solid red; float: left">
-  <table>
-    <form method='post' action=''>
-      <?php
-        foreach ($elements as $name => $type) {
-          echo "<tr>
-                  <td>
-                    $name:
-                  </td>
-                  <td>
-                    ".get_field($name, $type)."
-                  </td>
-                </tr>";
-        }
+  <form method='post' action='<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>'>
+    <table>
+        <?php
+          foreach ($elements as $name => $type) {
+            echo "<tr>
+                    <td>
+                      $name:
+                    </td>
+                    <td>
+                      ".get_field($name, $type)."
+                    </td>
+                  </tr>";
+            foreach ($messages as $message => $value) {
+              if ($message == $name) {
+                echo "<tr><td colspan = '2'>$value</td></tr>";
+              }
+            }
+          }
 
-        function get_field($name, $type) {
-          return "<input size='30' type='$type' value='' name='$name' placeholder='Entrez une valeur pour $name'>";
-        }
-      ?>
-    </form>
-  </table>
+          function get_field($name, $type) {
+            return "<input size='30' type='$type' name='$name' value='$_POST[$name]' placeholder='Entrez une valeur pour $name'>";
+          }
+        ?>
+    </table>
+    <input type="submit" value="Envoyer" />
+  </form>
 </div>
 <div id='preview' style="width: 55%; border: 1px solid red; float: right">
   
