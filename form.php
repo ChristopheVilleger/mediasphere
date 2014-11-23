@@ -1,6 +1,7 @@
 <?php
- include('helpers/get_elements.php');
- include('helpers/form_validator.php');
+  global $wpdb;
+  include('helpers/get_elements.php');
+  include('helpers/form_validator.php');
 ?>
 
 <h1>Ajouter un Film</h1>
@@ -11,6 +12,7 @@
     <table>
         <?php
           foreach ($elements as $name => $type) {
+
             echo "<tr>
                     <td>
                       $name:
@@ -19,6 +21,7 @@
                       ".get_field($name, $type)."
                     </td>
                   </tr>";
+
             foreach ($messages as $message => $value) {
               if ($message == $name) {
                 echo "<tr><td colspan = '2'>$value</td></tr>";
@@ -29,6 +32,7 @@
           function get_field($name, $type) {
             return "<input size='30' type='$type' name='$name' value='$_POST[$name]' placeholder='Entrez une valeur pour $name'>";
           }
+
         ?>
     </table>
     <input type="submit" value="Envoyer" />
@@ -48,6 +52,7 @@
     }
     else {
       alert('Error: Bad link');
+      $(this).val('');
     }
   });
 </script>

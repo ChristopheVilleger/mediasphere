@@ -98,7 +98,7 @@ function createMediaSphereTable() {
   $table_name = $wpdb->prefix."mediasphere";
 
   $sql =  "CREATE TABLE IF NOT EXISTS ".$table_name." (
-    `id` int(11) NOT NULL,
+    `id` int(11) NOT NULL AUTO_INCREMENT,
     `name` int(11),
     `release_date` datetime,
     `category` varchar(36),
