@@ -108,13 +108,12 @@ function createMediaSphereTable() {
       $results[] = $value[0];
     }
   }
-  $diff = array_diff($results, array_keys($elements));
-  
+  $diff = array_diff(array_keys($elements), $results);
+
   // If the columns in the DB and the var in get_elements are not the same
-  if (count($diff)) {
+  if (count($diff) > 0  ) {
     $wpdb->query("DROP TABLE wp_mediasphere;");
   }
-
 
   $sql =  "CREATE TABLE IF NOT EXISTS ".$table_name." (`id` int(11) NOT NULL AUTO_INCREMENT,";
 

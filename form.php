@@ -37,10 +37,15 @@
     </table>
     <input type="submit" value="Envoyer" />
   </form>
+
+  <?php include('helpers/index.php'); ?>
+
 </div>
 <div id='preview' style="width: 55%; border: 1px solid red; float: right">
   
 </div>
+
+
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
@@ -51,8 +56,9 @@
       $('#preview').append('<iframe width="560" height="315" src="http://www.youtube.com/embed/' + id + '" frameborder="0"></iframe>');
     }
     else {
-      alert('Error: Bad link');
+      alert('Error: Bad Youtube link');
       $(this).val('');
     }
   });
-</script>
+
+  </script>
