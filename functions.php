@@ -33,7 +33,7 @@
   // This tells WordPress to call the function named "setup_theme_admin_menus"
   // when it's time to create the menu pages.
   add_action('admin_menu', 'setup_theme_admin_menus');
-  add_action('admin_menu', 'createMediaSphereTable');
+  add_action('after_setup_theme', 'createMediaSphereTable');
 
 	add_action('admin_menu', 'ms_theme_menu');
 	add_action('wp_enqueue_scripts', 'add_ms_css' );
@@ -96,17 +96,51 @@ function createMediaSphereTable() {
     define('ABSPATH', dirname(__FILE__) . '/');
 
   $table_name = $wpdb->prefix."mediasphere";
+  include('helpers/get_elements.php');
 
-  $sql =  "CREATE TABLE IF NOT EXISTS ".$table_name." (
-    `id` int(11) NOT NULL AUTO_INCREMENT,
-    `name` int(11),
-    `release_date` datetime,
-    `category` varchar(36),
-    `title` varchar(36),
-    `youtube_link` varchar(36),
-    UNIQUE KEY `id` (`id`) ); ";
 
-    $wpdb->query($sql); 
+  $sql_results = $wpdb->get_results("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS`  WHERE `TABLE_NAME`='wp_mediasphere';", ARRAY_N);
+
+  $results = array();
+
+  foreach ($sql_results as $key => $value) {
+    if ($value[0] != 'id') {
+      $results[] = $value[0];
+    }
+  }
+  $diff = array_diff($results, array_keys($elements));
+  
+  // If the columns in the DB and the var in get_elements are not the same
+  if (count($diff)) {
+    $wpdb->query("DROP TABLE wp_mediasphere;");
+  }
+
+
+  $sql =  "CREATE TABLE IF NOT EXISTS ".$table_name." (`id` int(11) NOT NULL AUTO_INCREMENT,";
+
+  foreach ($elements as $name => $type) {
+
+    // Set $sql_type
+    switch ($type) {
+      case 'text':
+        $sql_type = 'varchar(36)';
+        break;
+      case 'number':
+        $sql_type = 'int(11)';
+        break;
+      case 'date':
+        $sql_type = 'datetime';
+        break;
+      default:
+        $sql_type = $type;
+    }
+
+    $sql = $sql."`$name` ".$sql_type.",";
+  }
+
+  $sql = $sql." UNIQUE KEY `id` (`id`) ); ";
+
+  $wpdb->query($sql); 
 }
 
 function getEveryData() {
