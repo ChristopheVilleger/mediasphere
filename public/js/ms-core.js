@@ -30,3 +30,18 @@ function current_order(el){
 			console.log("got " + order[i]);
 		}
 	}
+
+
+	jQuery("#btnLeft").click(function () {
+		var selectedItem = jQuery("#rightValues option:selected");
+		jQuery("#leftValues").append(selectedItem);
+	});
+
+	jQuery("#btnRight").click(function () {
+		var selectedItem = jQuery("#leftValues option:selected");
+		jQuery("#rightValues").append(selectedItem);
+	});
+
+	jQuery("#rightValues").change(function () {
+		var selectedItem = jQuery("#rightValues option:selected");
+	});

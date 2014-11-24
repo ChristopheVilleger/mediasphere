@@ -6,3 +6,31 @@
 	width: 97%;
 	margin: 0 auto;
 }
+
+.group div{
+	padding: 5px!important;
+	min-height: 50px!important;
+}
+
+#ms_widgets_admin select {
+	min-width: 160px!important;
+}
+#ms_widgets_admin section {
+	padding: 8px;
+	background-color: #f0f0f0;
+	overflow: auto;
+}
+#ms_widgets_admin div {
+	display: inline-block;
+	padding: 4px;
+}
+#ms_widgets_admin section > div + div {
+	width: 40px;
+	text-align: center;
+}
+
+#ms_widgets_admin {
+	display: block;
+	width: 60%;
+	margin: 0 auto;
+}

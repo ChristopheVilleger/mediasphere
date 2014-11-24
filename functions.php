@@ -45,10 +45,10 @@
 	function add_ms_css() {
 		wp_register_style( 'prefix-style',  get_template_directory_uri().'/public/css/ms-style.css' );
 		wp_register_style( 'font-awesome',  get_template_directory_uri().'/public/css/font-awesome.min.css' );
-                wp_register_style( 'widget_mediaphere',  get_template_directory_uri().'/public/css/widget_mediaphere.css' );
+		wp_register_style( 'widget_mediaphere',  get_template_directory_uri().'/public/css/widget_mediaphere.css' );
 		wp_enqueue_style( 'prefix-style' );
 		wp_enqueue_style( 'font-awesome' );
-                wp_enqueue_style( 'widget_mediaphere' );
+		wp_enqueue_style( 'widget_mediaphere' );
 	}
 
 	function add_ms_js() {
@@ -176,16 +176,16 @@ function getMediaSphereSettings(  )
 		add_theme_page( 'MS Settings', 'MS Settings', 'manage_options', 'functions.php', 'mediasphere_settings');
 	}
 	register_nav_menus( array(	'ms_top_menu' => 'Menu navigation top',) );
-        
-        
+
+
         /**
          * Debut Widget
          */
         include_once plugin_dir_path( __FILE__ ).'inc/mediasphere_widget.php';
         add_action('widgets_init', function(){
-            register_widget('mediasphere_widget');
+        	register_widget('mediasphere_widget');
         });
-        
+
         /**
          * Fin Widget
          */
