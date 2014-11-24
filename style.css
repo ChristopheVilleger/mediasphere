@@ -106,21 +106,19 @@
 		}
 
 		#ms_header{
-			height: 8%;
-			width: 100%;
-			min-height: 45px;
-			padding: 0 20px ;
+			min-height: 10%;
+			padding: 0 20px;
 			-moz-box-shadow: 0px 5px 5px 0px #9b9b9b;
 			-webkit-box-shadow: 0px 5px 5px 0px #9b9b9b;
 			-o-box-shadow: 0px 5px 5px 0px #9b9b9b;
 			box-shadow: 0px 5px 5px 0px #9b9b9b;
-			display: block;
 		}
 
 		#ms_logo{
 			display: inline-block;
-			vertical-align: top;
+
 		}
+
 		#ms_logo_txt {
 			font-size: 3rem;
 			font-weight: 600;
@@ -131,20 +129,20 @@
 
 		#ms_header_menu {
 			display: inline-block;
+			vertical-align: top;
 		}
+
 		#ms_header_menu ul {
-			text-align: left;
 			margin: 0;
 			list-style: none;
-			height: 100%;
-			display: table;
-			table-layout: fixed; /* optional */
+			text-align: left;
 		}
+
 		#ms_header_menu ul li {
-			display: table-cell;
+			cursor: pointer;
+			display: inline;
 			font-size : 1.8rem;
 			background: #fff;
-			cursor: pointer;
 			-webkit-transition: all 0.2s;
 			-moz-transition: all 0.2s;
 			-ms-transition: all 0.2s;
@@ -152,10 +150,10 @@
 			transition: all 0.2s;
 		}
 		#ms_header_menu a{
-			display: -webkit-box; -webkit-box-align: center;
+			float: left;
+			padding: 1.6rem 1rem;
 			vertical-align: middle;
-			height: 100%;
-			padding: 0 10px;
+			display: -webkit-box; -webkit-box-align: center;
 		}
 		#ms_header_menu ul li a:hover,
 		#ms_header_menu ul li:hover {
@@ -310,4 +308,19 @@
 		.redBG:hover {
 			background: white;
 			color : #cc0000!important;
+		}
+
+		#ms_last_articles {
+			background: #F5F5F5;
+			border-bottom: 1px solid #B01A1A;
+			border-top: 1px solid #B01A1A;
+			margin: 1rem 0;
+			-webkit-box-shadow: 0px 3px 15px 2px rgba(0,0,0,0.4);
+			-moz-box-shadow: 0px 3px 15px 2px rgba(0,0,0,0.4);
+			box-shadow: 0px 3px 15px 2px rgba(0,0,0,0.4);
+		}
+
+		.group div{
+			padding: 5px!important;
+			min-height: 50px!important;
 		}

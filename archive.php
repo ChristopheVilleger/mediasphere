@@ -1,6 +1,5 @@
 <?php get_header(); ?>
 <?php if (have_posts()) : ?>
-
 	<?php $post = $posts[0];
 
 	if (is_category()) { ?>
@@ -23,9 +22,13 @@
 
 	<?php } elseif (isset($_GET['paged']) && !empty($_GET['paged'])) { ?>
 	<h2 class="pagetitle">Blog Archives</h2>
-	<?php }
-
+	<?php } ?>
+	<?php
 	include (TEMPLATEPATH . '/inc/nav.php' );
+	?>
+	<h2 class="ms_title">Derniers articles</h2>
+
+	<?php
 	while (have_posts()) : the_post(); ?>
 	<div <?php post_class() ?>>
 		<h2 id="post-<?php the_ID(); ?>"><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>

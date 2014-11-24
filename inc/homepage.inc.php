@@ -17,6 +17,8 @@ function ms_homepage() {
 
 	echo ms_social_network();
 
+	echo ms_last_articles();
+
 }
 
 /**
@@ -74,15 +76,62 @@ function ms_categories( ) {
 
 
 function ms_search( ) {
-	echo'<!-- Categories  -->';
-
-	echo'<!-- END Categories  -->';
+	echo'<!-- Search  -->';
+	?>
+	<section id="ms_social_network">
+		<h2 class="ms_title">Réseaux sociaux</h2>
+		<div class="clear">
+		</div>
+	</section>
+	<?php
+	echo'<!-- END Search  -->';
 
 }
 
 function ms_social_network( ) {
-	echo'<!-- Categories  -->';
+	echo'<!-- Social  -->';
 
-	echo'<!-- END Categories  -->';
+	echo'<!-- END Social  -->';
 
 }
+
+function ms_last_articles( ) {
+	echo'<!-- Derniers articles  -->';
+	?>
+	<section id="ms_last_articles">
+		<h2 class="ms_title">Derniers articles</h2>
+		<div class="clear">
+
+			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+				<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
+					<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+					<?php include (TEMPLATEPATH . '/inc/meta.php' ); ?>
+					<div class="entry"><?php the_content(); ?></div>
+					<div class="postmetadata">
+						<?php the_tags('Tags: ', ', ', '<br />'); ?>
+						Posted in <?php the_category(', ') ?> |
+						<?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?>
+					</div>
+				</div>
+
+			<?php endwhile; ?>
+		<?php else : ?><h2>Not Found</h2><?php endif; ?>
+		</div>
+	</section>
+
+	<?php
+	echo'<!-- END Derniers articles  -->';
+
+}
+
+function ms_last_videos( ) {
+	echo'<!-- Videos  -->';
+	?>
+	<section id="ms_last_videos">
+		<h2 class="ms_title">Dernieres vidéos</h2>
+	</section>
+	<?php
+	echo'<!-- END Videos  -->';
+}
+

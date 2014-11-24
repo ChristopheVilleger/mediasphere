@@ -20,20 +20,20 @@
 	wp_enqueue_script('jquery');
 
 
-  function setup_theme_admin_menus() {
-    add_submenu_page('themes.php', 
-        'cinematheque_elements', 'Paramétrages cinémathèque', 'manage_options', 
-        'cinematheque_elements', 'theme_mediasphere_settings');
-  }
+	function setup_theme_admin_menus() {
+		add_submenu_page('themes.php',
+			'cinematheque_elements', 'Paramétrages cinémathèque', 'manage_options',
+			'cinematheque_elements', 'theme_mediasphere_settings');
+	}
 
-  function theme_mediasphere_settings() {
-    include('form.php');
-  }
+	function theme_mediasphere_settings() {
+		include('form.php');
+	}
 
   // This tells WordPress to call the function named "setup_theme_admin_menus"
   // when it's time to create the menu pages.
-  add_action('admin_menu', 'setup_theme_admin_menus');
-  add_action('after_setup_theme', 'createMediaSphereTable');
+	add_action('admin_menu', 'setup_theme_admin_menus');
+	add_action('after_setup_theme', 'createMediaSphereTable');
 
 	add_action('admin_menu', 'ms_theme_menu');
 	add_action('wp_enqueue_scripts', 'add_ms_css' );
@@ -57,6 +57,7 @@
 		wp_enqueue_script('jquery-ui-core');
 		wp_enqueue_script('jquery-ui-tabs');
 		wp_enqueue_script('jquery-ui-sortable');
+		wp_enqueue_script('jquery-ui-accordion');
 		$queryui = $wp_scripts->query('jquery-ui-core');
 		$url = "http://ajax.googleapis.com/ajax/libs/jqueryui/".$queryui->ver."/themes/smoothness/jquery-ui.css";
 
@@ -91,88 +92,88 @@
 	*
 	**/
 
-function createMediaSphereTable() {
-  global $wpdb;
+	function createMediaSphereTable() {
+		global $wpdb;
   // Creating the db
-  if ( !defined('ABSPATH') )
-    define('ABSPATH', dirname(__FILE__) . '/');
+		if ( !defined('ABSPATH') )
+			define('ABSPATH', dirname(__FILE__) . '/');
 
-  $table_name = $wpdb->prefix."mediasphere";
-  include('helpers/get_elements.php');
+		$table_name = $wpdb->prefix."mediasphere";
+		include('helpers/get_elements.php');
 
 
-  $sql_results = $wpdb->get_results("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS`  WHERE `TABLE_NAME`='wp_mediasphere';", ARRAY_N);
+		$sql_results = $wpdb->get_results("SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS`  WHERE `TABLE_NAME`='wp_mediasphere';", ARRAY_N);
 
-  $results = array();
+		$results = array();
 
-  foreach ($sql_results as $key => $value) {
-    if ($value[0] != 'id') {
-      $results[] = $value[0];
-    }
-  }
-  $diff = array_diff(array_keys($elements), $results);
+		foreach ($sql_results as $key => $value) {
+			if ($value[0] != 'id') {
+				$results[] = $value[0];
+			}
+		}
+		$diff = array_diff(array_keys($elements), $results);
 
   // If the columns in the DB and the var in get_elements are not the same
-  if (count($diff) > 0  ) {
-    $wpdb->query("DROP TABLE wp_mediasphere;");
-  }
+		if (count($diff) > 0  ) {
+			$wpdb->query("DROP TABLE wp_mediasphere;");
+		}
 
-  $sql =  "CREATE TABLE IF NOT EXISTS ".$table_name." (`id` int(11) NOT NULL AUTO_INCREMENT,";
+		$sql =  "CREATE TABLE IF NOT EXISTS ".$table_name." (`id` int(11) NOT NULL AUTO_INCREMENT,";
 
-  foreach ($elements as $name => $type) {
+			foreach ($elements as $name => $type) {
 
     // Set $sql_type
-    switch ($type) {
-      case 'text':
-        $sql_type = 'varchar(36)';
-        break;
-      case 'number':
-        $sql_type = 'int(11)';
-        break;
-      case 'date':
-        $sql_type = 'datetime';
-        break;
-      default:
-        $sql_type = $type;
-    }
+				switch ($type) {
+					case 'text':
+					$sql_type = 'varchar(36)';
+					break;
+					case 'number':
+					$sql_type = 'int(11)';
+					break;
+					case 'date':
+					$sql_type = 'datetime';
+					break;
+					default:
+					$sql_type = $type;
+				}
 
-    $sql = $sql."`$name` ".$sql_type.",";
-  }
+				$sql = $sql."`$name` ".$sql_type.",";
+			}
 
-  $sql = $sql." UNIQUE KEY `id` (`id`) ); ";
+			$sql = $sql." UNIQUE KEY `id` (`id`) ); ";
 
-  $wpdb->query($sql); 
+	$wpdb->query($sql);
 }
 
 function getEveryData() {
-  global $wpdb;
-  $table_name = $wpdb->prefix. "mediasphere";
-  $results = $wpdb->get_results("SELECT * FROM ".$table_name.";");
-  return $settings;
+	global $wpdb;
+	$table_name = $wpdb->prefix. "mediasphere";
+	$results = $wpdb->get_results("SELECT * FROM ".$table_name.";");
+	return $settings;
 }
 
-	/*==========  Settings data   ==========*/
-	function getMediaSphereSettings(  )
-	{
-		global $wpdb;
-		$table_name = $wpdb->prefix. "mediasphere_settings";
-		$results = $wpdb->get_results("SELECT * FROM ".$table_name.";");
+/*==========  Settings data   ==========*/
+function getMediaSphereSettings(  )
+{
+	global $wpdb;
+	$table_name = $wpdb->prefix. "mediasphere_settings";
+	$results = $wpdb->get_results("SELECT * FROM ".$table_name.";");
 
 		// Selecting only the first table
-		$data = $results[0];
+	$data = $results[0];
 		// Setting the variables
-		$settings['time_duration'] = $data->time_duration;
+	$settings['time_duration'] = $data->time_duration;
 
-		$settings['autoplay'] = $data->autoplay;
-		return $settings;
-	}
+	$settings['autoplay'] = $data->autoplay;
+	return $settings;
+}
 
 /**
 	* Theme Option Page Example
 	*/
 	function ms_theme_menu()
 	{
-		add_theme_page( 'MS Settings', 'MS Settings', 'manage_options', 'functions.php', 'mediasphere');
+		add_theme_page( 'MS Settings', 'MS Settings', 'manage_options', 'functions.php', 'mediasphere_settings');
 	}
 	register_nav_menus( array(	'ms_top_menu' => 'Menu navigation top',) );
         

@@ -16,6 +16,7 @@
 				<div id="ms_logo_txt">
 					<a href="<?php echo get_option('home'); ?>/"><?php bloginfo('name'); ?></a>
 				</div>
+				<div class="description"><?php bloginfo('description'); ?></div>
 			</div>
 			<!-- END logo -->
 			<nav id="ms_header_menu">
@@ -23,14 +24,10 @@
 					<?php wp_nav_menu( array( 'container_class' => 'header-links', 'container_id' => 'nav-header-links', 'theme_location' => 'ms_top_menu' ) ); ?>
 				<?php endif; ?>
 			</nav>
+			<div class="clear"></div>
 		</header>
 
 		<?php
 		if(is_home() )
 			ms_homepage();
 		?>
-
-		<div class="description"><?php bloginfo('description'); ?></div>
-
-		<!-- Posts  -->
-		<!-- Posts  -->
