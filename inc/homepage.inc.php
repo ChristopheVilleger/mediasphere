@@ -12,6 +12,8 @@ function ms_homepage() {
 	echo ms_featured();
 
 	echo ms_categories();
+        
+        echo ms_sidebar();
 
 	echo ms_search();
 
@@ -72,6 +74,12 @@ function ms_categories( ) {
 
 	<?php
 	echo'<!-- END Categories  -->';
+}
+
+function ms_sidebar( ) {
+    	echo'<!-- Sidebar  -->';
+        include_once TEMPLATEPATH . '/sidebar.php';
+	echo'<!-- END Sidebar  -->';
 }
 
 
