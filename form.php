@@ -1,4 +1,5 @@
 <?php
+echo '<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>';
 global $wpdb;
 include('helpers/get_elements.php');
 include('helpers/form_validator.php');
@@ -8,7 +9,7 @@ include('helpers/form_validator.php');
 <br />
 
 <div style="width: 40%; border: 1px solid red; float: left">
-	<form method='post' action='<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>'>
+	<form id="mediasphereForm" method='post' action='<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>'>
 		<table>
 			<?php
 			foreach ($elements as $name => $type) {
@@ -30,7 +31,7 @@ include('helpers/form_validator.php');
 		}
 
 		function get_field($name, $type) {
-			return "<input size='30' type='$type' name='$name' value='$_POST[$name]' placeholder='Entrez une valeur pour $name'>";
+			return "<input size='30' type='$type' id='$name' name='$name' value='$_POST[$name]' placeholder='Entrez une valeur pour $name'>";
 		}
 
 		?>
@@ -45,14 +46,11 @@ include('helpers/form_validator.php');
 
 </div>
 
-
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-
 <script>
 	$("input[name='youtube_link']").on('change', function() {
 		if ($(this).val().match('youtube.com/') || $(this).val().match('youtu.be/') ) {
 			id = $(this).val().split('=')[1];
+      $('#preview').empty();
 			$('#preview').append('<iframe width="560" height="315" src="http://www.youtube.com/embed/' + id + '" frameborder="0"></iframe>');
 		}
 		else {

@@ -12,7 +12,16 @@ if ( isset ( $_POST ) && !empty($_POST)) {
 
 	// Save data
 	if (empty($messages)) {
-		include('send_form.php');
+
+    // If insert
+    if ($_POST['id'] == '') {
+      include('insert-config.php');
+    }
+    // If update
+    else {
+      include('update-config.php');
+    }
+    echo "<br /><h1 style='color: green'>La configuration a bien été mise à jour</h1></br />";
 	}
 
 
