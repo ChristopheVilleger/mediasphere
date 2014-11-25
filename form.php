@@ -48,7 +48,7 @@ include('helpers/delete_element.php');
 </div>
 
 <script>
-	$("input[name='youtube_link']").on('change', function() {
+	$("input[name='youtube_link']").on('input', function() {
 		if ($(this).val().match('youtube.com/') || $(this).val().match('youtu.be/') ) {
 			id = $(this).val().split('=')[1];
       $('#preview').empty();
