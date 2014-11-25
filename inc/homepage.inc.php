@@ -26,11 +26,13 @@ function ms_homepage() {
 
 	echo ms_top_menu();
 
+	echo '<div class="ms_homepage">';
+	// Affichage des zones
 	foreach ($widgets_active as $value) {
 		if(is_callable($functions[$value], false, $callable_name))
 			echo $callable_name();
 	}
-
+	echo '</div>';
 	echo ms_sidebar();
 
 }
@@ -98,8 +100,8 @@ function ms_sidebar( ) {
 function ms_search( ) {
 	echo'<!-- Search  -->';
 	?>
-	<section id="ms_social_network">
-		<h2 class="ms_title">Réseaux sociaux</h2>
+	<section id="ms_search">
+		<h2 class="ms_title">Recherche</h2>
 		<div class="clear">
 		</div>
 	</section>
@@ -110,7 +112,33 @@ function ms_search( ) {
 
 function ms_social_network( ) {
 	echo'<!-- Social  -->';
+	global $wpdb;
+	$table_settings = $wpdb->base_prefix."mediasphere_settings";
+	$settingss = $wpdb->get_results("SELECT * FROM $table_settings;");
+	$settings = $settingss[0];
 
+	$fa = array('fb'=> 'facebook','tw'=> 'twitter','gg'=>'google-plus','ln'=>'linkedin','yt'=>'youtube','pi'=>'pinterest')
+	?>
+	<section id="ms_socials">
+		<h2 class="ms_title">Réseaux sociaux </h2>
+		<div class="clear share-buttons">
+			<!-- Facebook -->
+			<?php
+			$socialsDatas = json_decode($settings->home_socials);
+			foreach ($socialsDatas as $key => $value) {
+				if($value->link!=null){
+
+					echo '<div><a href="'. $value->link.'" target="_blank">';
+					echo '	<span class="fa fa-'.$fa[$key].'"></span><br>';
+					echo '	<span class="social_text">'. $value->text.'</span>';
+					echo '</a></div>';
+				}
+			}
+			?>
+
+		</div>
+	</section>
+	<?php
 	echo'<!-- END Social  -->';
 
 }
@@ -121,17 +149,17 @@ function ms_last_articles( ) {
 	<section id="ms_last_articles">
 		<h2 class="ms_title">Derniers articles</h2>
 		<div class="clear">
-
 			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-
-				<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
-					<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
-					<?php include (TEMPLATEPATH . '/inc/meta.php' ); ?>
-					<div class="entry"><?php the_content(); ?></div>
-					<div class="postmetadata">
-						<?php the_tags('Tags: ', ', ', '<br />'); ?>
-						Posted in <?php the_category(', ') ?> |
-						<?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?>
+				<div class="ms_apercu">
+					<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
+						<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
+						<?php include (TEMPLATEPATH . '/inc/meta.php' ); ?>
+						<div class="entry"><?php the_content(); ?></div>
+						<div class="postmetadata">
+							<?php the_tags('Tags: ', ', ', '<br />'); ?>
+							Posted in <?php the_category(', ') ?> |
+							<?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?>
+						</div>
 					</div>
 				</div>
 
@@ -154,4 +182,3 @@ function ms_last_videos( ) {
 	<?php
 	echo'<!-- END Videos  -->';
 }
-

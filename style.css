@@ -4,7 +4,6 @@
 	Version: 1.0
 	Author: Christophe Villeger, Yassine Riffi, Sidney
 	Tags: media, sphere, movie, library, film, series
-
 	We start with a basic wp-core css
 	*/
 
@@ -314,9 +313,90 @@
 			background: #F5F5F5;
 			border-bottom: 1px solid #B01A1A;
 			border-top: 1px solid #B01A1A;
-			margin: 1rem 0;
-			-webkit-box-shadow: 0px 3px 15px 2px rgba(0,0,0,0.4);
-			-moz-box-shadow: 0px 3px 15px 2px rgba(0,0,0,0.4);
-			box-shadow: 0px 3px 15px 2px rgba(0,0,0,0.4);
+		}
+		.ms_form_section {
+			width: 90%;
+			text-align: center;
+		}
+		.ms_form_section input {
+			padding: 5px 3px;
 		}
 
+		.ms_form_section .fa {
+			font-size: 1.4rem;
+		}
+		.fa-facebook{color:#3c5b9b}
+		.fa-twitter {color:#2daae1}
+		.fa-deviantart {color:#029527}
+		.fa-youtube {color:#A80000}
+		.fa-rss {color:#ff921a}
+		.fa-linkedin {color:#0073b2}
+		.fa-envelope {color:#69b436}
+		.fa-pinterest {color:#cb2027}
+		.fa-google-plus {color:#f63e28}
+		.share-buttons{text-align:center}
+		.share-buttons .fa {margin:3px; text-shadow:0 2px 3px 3px #acacac}
+		.share-buttons .fa:hover { text-shadow:0 2px 5px 5px #333}
+
+		.ms_homepage section {
+			min-height: 15%;
+			padding-bottom: 10px;
+			border-top: 1px solid #B01A1A;
+
+		}
+
+		.share-buttons div {
+			display: inline-block;
+			min-width: 8%;
+			vertical-align: top;
+			padding: 5px 0px;
+		}
+
+		.share-buttons div:hover{
+			background: #FFE4E1;
+			cursor: pointer;
+		}
+		#ms_socials	.share-buttons .fa {
+			font-size: 7.5rem;
+			height: 4.5rem;
+		}
+
+
+		.ms_apercu {
+			display: inline-block;
+			min-width: 28%;
+			max-width: 45%;
+			margin: 0.5rem auto;
+			padding:  0.5rem 0.7rem;
+			background: white;
+			-moz-box-shadow: 0px 2px 1px 0px #7D7D7D;
+			-webkit-box-shadow: 0px 2px 1px 0px #7D7D7D;
+			-o-box-shadow: 0px 2px 1px 0px #7D7D7D;
+			box-shadow: 0px 2px 1px 0px #7D7D7D;
+			text-align: left;
+		}
+
+
+		#ms_last_articles {
+			text-align: center;
+		}
+
+		#ms_post {
+			background: #F3F3F3;
+			border-top: 1px solid #B01A1A;
+		}
+
+		.ms_article {
+			clear: both;
+			width: 65%;
+			margin: 0 auto;
+			background: white;
+		}
+
+		.ms_meta {
+			float: right;
+			padding: 10px 5px;
+		}
+		.ms_article .entry {
+			padding: 1rem 0.6rem;
+		}
