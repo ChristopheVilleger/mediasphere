@@ -3,6 +3,7 @@ echo '<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.m
 global $wpdb;
 include('helpers/get_elements.php');
 include('helpers/form_validator.php');
+include('helpers/delete_element.php');
 ?>
 
 <h1>Ajouter un Film</h1>

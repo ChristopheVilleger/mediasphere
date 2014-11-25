@@ -23,6 +23,7 @@ echo "</table>";
 ?>
 
 <script>
+// On edit
 $('.edit').on('click', function() {
   $('#elementId').remove();
   $('#mediasphereForm').append('<input type="hidden" name="id" id="elementId" value="' + $(this).parents('tr').attr('data-id') + '">');
@@ -37,5 +38,9 @@ $('.edit').on('click', function() {
   });
    
   elementId = $('#elementId');
+});
+// On delete
+$('.delete').on('click', function() {
+  window.location.replace('<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]&delete_id=" ?>'+$(this).parents('tr').attr('data-id'));
 });
 </script>
