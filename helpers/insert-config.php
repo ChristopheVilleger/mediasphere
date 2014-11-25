@@ -17,6 +17,5 @@ $insert_query = "INSERT INTO ".$table_name."(";
 	$insert_query = substr_replace($insert_query, "", -2)."');";
 
 $wpdb -> query($insert_query);
-echo "<br /><h1 style='color: green'>La configuration a bien été mise à jour</h1></br />";
 
 ?>

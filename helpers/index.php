@@ -25,6 +25,7 @@ echo "</table>";
 <script>
 // On edit
 $('.edit').on('click', function() {
+  $('.mediasphereTitle').html('Edit a film - <a href="#" id="reload">Add a film</a>');
   $('#elementId').remove();
   $('#mediasphereForm').append('<input type="hidden" name="id" id="elementId" value="' + $(this).parents('tr').attr('data-id') + '">');
 
@@ -38,6 +39,9 @@ $('.edit').on('click', function() {
   });
    
   elementId = $('#elementId');
+});
+$('body').on('click', '#reload', function() {
+  location.reload();
 });
 // On delete
 $('.delete').on('click', function() {

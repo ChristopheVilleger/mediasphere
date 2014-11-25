@@ -6,7 +6,7 @@ include('helpers/form_validator.php');
 include('helpers/delete_element.php');
 ?>
 
-<h1>Ajouter un Film</h1>
+<h1 class='mediasphereTitle'>Add a film</h1>
 <br />
 
 <div style="width: 40%; border: 1px solid red; float: left">
