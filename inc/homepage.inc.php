@@ -33,7 +33,7 @@ function ms_homepage() {
 			echo $callable_name();
 	}
 	echo '</div>';
-	echo ms_sidebar();
+	//echo ms_sidebar();
 
 }
 
@@ -55,18 +55,42 @@ function ms_featured( ) {
 	echo'<!-- Featured  -->';
 	?>
 	<section id="ms_featured">
-		<h2 class="ms_title">A la une</h2>
-		<div class="clear">
-			<div class="ms_featured_section ">
-				<figure>
-					<img src="http://www.mairie-villetaneuse.fr/images/villetaneuse/actus/2014_10/cap_quartiers.jpg" alt="">
-					<figcaption>Proposition pour le thème</figcaption>
-				</figure>
-			</div>
+		<h2 class="ms_title">Dernières vidéos</h2>
+		<div class="clear"  id="cinematheque_thumbnails">
+			<?php
+			global $wpdb;
+			$results = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix. "mediasphere");
+			$medias_array = array();
+			foreach($results as $media_object){
+			//echo $media_object->title ;
+			//echo $media_object->release_date ;
+			//echo $media_object->category ;
+				$youtube_link = $media_object->youtube_link;
+				$medias_array[] = substr($youtube_link, -11);
+			}
+			foreach($medias_array as $value) {
+				echo '<div class="ms_featured_section ">';
+				echo '<figure>';
+				echo '<img src="http://img.youtube.com/vi/' . $value .'/mqdefault.jpg" alt="">';
+				echo '<figcaption>Proposition pour le thème</figcaption>';
+				echo '</figure>';
+				echo '</div>';
+			}
+			?>
 		</div>
-	</section>
-	<?php
-	echo '<!-- Featured  -->';
+		<script>
+			$( ".thumbnail" ).click(function() {
+				var youtube_value = $(this).data('value');
+				var youtube_object = "<iframe width='560' height='315' src='//www.youtube.com/embed/" + youtube_value + "' frameborder='0' allowfullscreen></iframe>";
+				$('#mediatheque_iframe').html(youtube_object);
+			});
+		</script>
+		?>
+	</div>
+</div>
+</section>
+<?php
+echo '<!-- Featured  -->';
 }
 
 
