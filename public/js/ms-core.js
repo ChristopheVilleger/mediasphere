@@ -31,17 +31,23 @@ function current_order(el){
 		}
 	}
 
-
+	var selectedItem = null;
+	var selectedValues = null;
 	jQuery("#btnLeft").click(function () {
-		var selectedItem = jQuery("#rightValues option:selected");
+		selectedItem = jQuery("#rightValues option:selected");
 		jQuery("#leftValues").append(selectedItem);
 	});
 
 	jQuery("#btnRight").click(function () {
-		var selectedItem = jQuery("#leftValues option:selected");
+		selectedItem = jQuery("#leftValues option:selected");
 		jQuery("#rightValues").append(selectedItem);
 	});
 
 	jQuery("#rightValues").change(function () {
-		var selectedItem = jQuery("#rightValues option:selected");
+		selectedItem = jQuery("#rightValues option:selected");
+	});
+
+	jQuery("#ms_widgets_admin button").click(function () {
+		selectedValues = jQuery("#leftValues").val();
+		console.log(selectedValues);
 	});
