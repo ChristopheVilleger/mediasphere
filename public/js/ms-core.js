@@ -1,5 +1,5 @@
 jQuery(window).load(function(){
-        var youtube_dialog = $("#youtube_dialog");
+        var youtube_dialog = jQuery("#youtube_dialog");
 	youtube_dialog.dialog({
 		autoOpen: false,
 		width: 620,
@@ -10,7 +10,7 @@ jQuery(window).load(function(){
         
         youtube_dialog.keypress(function(e) {
             if (e.keyCode === 27) {
-                $("#youtube_dialog").dialog('close');
+                jQuery("#youtube_dialog").dialog('close');
             } 
         });
 

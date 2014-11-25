@@ -150,6 +150,15 @@
 			$sql = $sql." UNIQUE KEY `id` (`id`) ); ";
 
 	$wpdb->query($sql);
+
+	$insertSql = "INSERT INTO `wp_mediasphere` (`id`, `title`, `release_date`, `category`, `youtube_link`) VALUES
+	(3, 'Guild wars test', '1991-12-20 00:00:00', 'Guild Wars', 'https://www.youtube.com/watch?v=mvu5n31lwSo'),
+	(4, 'Guild wars 2 mois aprÃ¨s', '1991-12-20 00:00:00', 'Guild Wars', 'https://www.youtube.com/watch?v=HkKceoHPEcU'),
+	(5, 'Guild wars 2 review', '1991-12-20 00:00:00', 'Guild Wars', 'https://www.youtube.com/watch?v=Ax-_06Acj8Y'),
+	(6, 'Guild wars is Dying', '1991-12-20 00:00:00', 'Guild Wars', 'https://www.youtube.com/watch?v=xHt8JrDQeuM'),
+	(7, 'Guild wars truc & astuce', '1998-07-12 00:00:00', 'Guild Wars', 'https://www.youtube.com/watch?v=LtbaqDyShbw'),
+	(8, 'Guild Wars 2 - PC Preview Gameplay ', '1998-07-12 00:00:00', 'Guild Wars', 'https://www.youtube.com/watch?v=kVdihizq4XE');";
+	$wpdb->query($insertSql);
 }
 
 function createMediaSphereSettingsTable() {
