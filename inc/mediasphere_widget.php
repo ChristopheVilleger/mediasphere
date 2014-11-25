@@ -26,7 +26,7 @@ class Mediasphere_Widget extends WP_Widget {
 		if ( ! empty( $instance['title'] ) ) {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ). $args['after_title'];
 		}
-		echo "<div id='btn_widget_mediasphere'></div>";
+		echo __( 'Hello, World!', 'text_domain' );
 		echo $args['after_widget'];
 	}
 

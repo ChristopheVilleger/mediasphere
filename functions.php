@@ -54,22 +54,16 @@
 	function add_ms_js() {
 		global $wp_scripts;
 
-		//wp_enqueue_script('jquery-ui-core');
-		//wp_enqueue_script('jquery-ui-tabs');
-		//wp_enqueue_script('jquery-ui-sortable');
-		//wp_enqueue_script('jquery-ui-accordion');
+		wp_enqueue_script('jquery-ui-core');
+		wp_enqueue_script('jquery-ui-tabs');
+		wp_enqueue_script('jquery-ui-sortable');
+		wp_enqueue_script('jquery-ui-accordion');
 		$queryui = $wp_scripts->query('jquery-ui-core');
 		$url = "http://ajax.googleapis.com/ajax/libs/jqueryui/".$queryui->ver."/themes/smoothness/jquery-ui.css";
 
 		wp_enqueue_style('jquery-ui-smoothness', $url, false, null);
-                
 		wp_register_script( 'prefix-js', get_template_directory_uri().'/public/js/ms-core.js' );
-                wp_deregister_script('jquery-ui');
-                wp_register_script('jquery-ui', ("//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"), false);
-                wp_enqueue_script('jquery-ui');
-                wp_register_script( 'mediasphere_cinematheque-js', get_template_directory_uri().'/public/js/mediasphere_cinematheque.js' );
 		wp_enqueue_script( 'prefix-js' );
-                wp_enqueue_script( 'mediasphere_cinematheque-js' );
 	}
 
 		// Clean up the <head>
