@@ -94,6 +94,13 @@ function ms_sidebar( ) {
 	echo'<!-- Sidebar  -->';
 	include_once TEMPLATEPATH . '/sidebar.php';
 	echo'<!-- END Sidebar  -->';
+        
+        /**
+         * Content for Mediatheque
+         */
+        ?>
+        <div id="cinematheque_dialog" title="Basic dialog" style="display:none"></div>
+        <?php
 }
 
 

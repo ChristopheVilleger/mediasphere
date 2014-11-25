@@ -11,9 +11,8 @@
             //echo $media_object->release_date ;
             //echo $media_object->category ;
             $youtube_link = $media_object->youtube_link;
-            $medias_array[] = $youtube_link;
+            $medias_array[] = substr($youtube_link, -11);
         }
-        
         //$array = array('zxdA9XnC120','OcB-FreSnG8','GnT8jVCyh_E','d1tNOYcYfJQ','FqTzOpzuLpE','3AGbyUZgJpw');
         echo '<ul>';
         foreach($medias_array as $value) {

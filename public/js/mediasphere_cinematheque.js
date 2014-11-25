@@ -9,11 +9,11 @@ jQuery( document ).ready(function( $ ) {
             var options = {
                 title: "Ma Cinémathèque",
                 draggable : true,
-                height : 600,
+                height : 500,
                 width : 800,
                 maxHeight: 1000,
                 maxWidth: 1000,
-                minHeight: 600,
+                minHeight: 500,
                 minWidth: 800,
                 position: { my: "center", at: "center", of: window }, //Default
                 resizable: true,
