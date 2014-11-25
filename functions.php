@@ -34,6 +34,7 @@
   // when it's time to create the menu pages.
 	add_action('admin_menu', 'setup_theme_admin_menus');
 	add_action('after_setup_theme', 'createMediaSphereTable');
+	add_action('after_setup_theme', 'createMediaSphereSettingsTable');
 
 	add_action('admin_menu', 'ms_theme_menu');
 	add_action('wp_enqueue_scripts', 'add_ms_css' );
@@ -149,6 +150,33 @@
 			$sql = $sql." UNIQUE KEY `id` (`id`) ); ";
 
 	$wpdb->query($sql);
+}
+
+function createMediaSphereSettingsTable() {
+		global $wpdb;
+  // Creating the db
+		if ( !defined('ABSPATH') )
+			define('ABSPATH', dirname(__FILE__) . '/');
+
+		$table_name = $wpdb->prefix."mediasphere_settings";
+
+
+	$sql = "CREATE TABLE IF NOT EXISTS ".$table_name." (
+		  `id` int(11) NOT NULL,
+		  `home_widgets_order` varchar(100) NOT NULL,
+		  `home_last_videos` int(10) NOT NULL,
+		  `home_socials` text NOT NULL,
+		  `nb_videos` int(10) NOT NULL,
+		  UNIQUE KEY `id` (`id`)
+		) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+
+	$wpdb->query($sql);
+	$sql ="INSERT INTO ".$table_name." (`id`, `home_widgets_order`, `home_last_videos`, `home_socials`, `nb_videos`) VALUES
+(0, '\"0,1,2,3,4\"', 0, '{\"fb\":{\"link\":\"\",\"text\":\"\"},\"tw\":{\"link\":\"\",\"text\":\"\"},\"ln\":{\"link\":\"\",\"text\":\"\"},\"pi\":{\"link\":\"\",\"text\":\"\"},\"gg\":{\"link\":\"\",\"text\":\"\"},\"yt\":{\"link\":\"\",\"text\":\"\"}}', '4');";
+	$wpdb->query($sql);
+
+
+
 }
 
 function getEveryData() {

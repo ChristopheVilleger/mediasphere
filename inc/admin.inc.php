@@ -2,12 +2,15 @@
 	add_action('admin_head', 'add_ms_css');
 
 	function mediasphere_settings() {
-				// CSS
+
+		global $wpdb;
+
+
+		// CSS
 		if ( !current_user_can( 'manage_options' ) )  {
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
 
-		global $wpdb;
 		$table_videos = $wpdb->base_prefix."mediasphere";
 		$table_settings = $wpdb->base_prefix."mediasphere_settings";
 
@@ -85,6 +88,15 @@
 				<li><a href="#tabs-4">Cinémathèque</a></li>
 			</ul>
 			<div  id="tabs-1">
+				<?php
+					if ( isset ( $_POST['nb_videos'] ) && !empty($_POST['nb_videos'])) {
+						$table_name = $wpdb->prefix. "mediasphere";
+						$sql = "UPDATE  `wordpress`.`wp_mediasphere_settings` SET  `nb_videos` =  '".$_POST['nb_videos']."' WHERE  `wp_mediasphere_settings`.`id` =0;" ;
+						$wpdb->query($sql);
+						echo "<h2 style='color: red'>Merci d'avoir mis à jour le nombre de vidéo par page à ".$_POST['nb_videos']."</h2>
+						<br />";
+					}
+				?>
 				<h3>Réseaux sociaux</h3>
 				<form method="post" action="" id="update_social">
 					<input type="hidden" name="action" value="update_social_networks">
@@ -179,7 +191,18 @@
 			</div>
 			<div  id="tabs-4">
 				<h2>Cinémathèque</h2>
-				Vous trouverez ici les différents paramètres vous permettant de régler vos cinémathèques.
+				Vous trouverez ici les différents paramètres vous permettant de régler votre cinémathèque.
+
+				Nombre de videos affichées:
+
+				<form method="post" action="">
+					<?php
+						$sql = 'SELECT nb_videos from wp_mediasphere_settings' ;
+						$result = $wpdb->get_results($sql, ARRAY_N);
+					?>
+					<input size='30' type='int' name='nb_videos' value="<?php echo $result[0][0]; ?>">
+					<input type="submit" value="Envoyer" />
+				</form> 
 			</div>
 		</div>
 
