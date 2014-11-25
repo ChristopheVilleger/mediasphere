@@ -131,7 +131,7 @@
     // Set $sql_type
 				switch ($type) {
 					case 'text':
-					$sql_type = 'varchar(36)';
+					$sql_type = 'varchar(72)';
 					break;
 					case 'number':
 					$sql_type = 'int(11)';
