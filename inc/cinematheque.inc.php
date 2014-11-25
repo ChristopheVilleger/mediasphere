@@ -1,1 +1,2 @@
-<iframe style="display: none" width="560" height="315" src="//www.youtube.com/embed/zxdA9XnC120" frameborder="0" allowfullscreen></iframe>
+<?php
+    echo 'Page de cinemathèque';
