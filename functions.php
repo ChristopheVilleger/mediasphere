@@ -1,7 +1,7 @@
 	<?php
 		//Libs
 	require_once( get_template_directory() . '/inc/homepage.inc.php' );
-	require_once( get_template_directory() . '/inc/cinematheque.inc.php' );
+	//require_once( get_template_directory() . '/inc/cinematheque.inc.php' );
 	require_once( get_template_directory() . '/inc/admin.inc.php' );
 	require_once( get_template_directory() . '/inc/customTheme.inc.php' );
 	require_once( get_template_directory() . '/inc/install.inc.php' );
