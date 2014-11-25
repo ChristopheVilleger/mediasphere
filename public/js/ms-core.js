@@ -1,12 +1,18 @@
 jQuery(window).load(function(){
-
-	jQuery('#youtube_dialog').dialog({
+        var youtube_dialog = $("#youtube_dialog");
+	youtube_dialog.dialog({
 		autoOpen: false,
 		width: 620,
 		height:400,
 		modal: true,
 		title: 'Cinémathèque'
 	});
+        
+        youtube_dialog.keypress(function(e) {
+            if (e.keyCode === 27) {
+                $("#youtube_dialog").dialog('close');
+            } 
+        });
 
 	jQuery( ".show_yt" ).click(function(event) {
 		event.preventDefault();

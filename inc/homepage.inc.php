@@ -96,12 +96,11 @@ function ms_categories( ) {
 	<section id="ms_categories">
 		<h2 class="ms_title">Catégories</h2>
 		<div class="clear">
-			<a href="" title="" class="redBG">Catégorie 1</a>
-			<a href="" title="" class="redBG">Catégorie 2</a>
-			<a href="" title="" class="redBG">Catégorie 3</a>
-			<a href="" title="" class="redBG">Catégorie 4</a>
-			<a href="" title="" class="redBG">Catégorie 5</a>
-			<a href="" title="" class="redBG">Catégorie 6</a>
+                    <?php
+                        foreach(get_categories() as $cat) { 
+                            echo "<a href='?cat=$cat->cat_ID' title='' class='redBG'>$cat->cat_name</a>" ;
+                        }
+                    ?> 
 		</div>
 	</section>
 
