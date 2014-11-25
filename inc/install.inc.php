@@ -14,17 +14,23 @@ function ms_install ()
 
 	require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
-	$sql = 	'CREATE TABLE IF NOT EXISTS '.$table_name.' (
+	$sql = 'CREATE TABLE IF NOT EXISTS '.$table_name.' (
 		`home_widgets_order` varchar(100) NOT NULL,
 		`home_featured_posts` varchar(100) NOT NULL,
 		`home_categories` varchar(100) NOT NULL
 		) ENGINE=InnoDB DEFAULT CHARSET=latin1;';
-dbDelta( $sql );
-}
 
-function ms_install_data()
-{
-	global $wpdb;
-	$table_name = $wpdb->prefix. "mediasphere_settings";
-//$rows_affected = $wpdb->insert( $table_name, array( 'time_duration' => '250', 'effect_name' => 'fade', 'theme_name' => 'light', 'article_number' => 3 , 'slider_width' => 600 , 'slider_height' => 200, 'navigation_menu' => 1, 'autoplay' => 1  ) );
+$sql .="CREATE TABLE IF NOT EXISTS `wp_mediasphere_settings` (
+	`id` int(11) NOT NULL,
+	`home_widgets_order` varchar(100) NOT NULL,
+	`home_last_videos` int(10) NOT NULL,
+	`home_socials` text NOT NULL,
+	UNIQUE KEY `id` (`id`)
+	) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
+
+$sql.="INSERT INTO `wp_mediasphere_settings` (`id`, `home_widgets_order`, `home_last_videos`, `home_socials`) VALUES
+(0, '0,1,2,3', 0, '');";
+
+
+dbDelta( $sql );
 }
