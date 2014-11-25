@@ -34,3 +34,43 @@
 	width: 60%;
 	margin: 0 auto;
 }
+
+.ms_form_section {
+	display: inline-block;
+	min-width: 28%;
+	text-align: left;
+	padding: 6px 4px;
+	margin: 5px auto;
+}
+.ms_form_section input {
+	padding: 5px 3px;
+	display: block;
+	width: 80%;
+}
+.ms_form_section button {
+	padding: 5px 3px;
+	display: block;
+
+}
+.ms_form_section span {
+	font-size: 1.5rem;
+}
+
+#update_social {
+	text-align: center;
+}
+.ms_form_section .fa {
+	font-size: 1.4rem;
+}
+.fa-facebook{color:#3c5b9b}
+.fa-twitter {color:#2daae1}
+.fa-deviantart {color:#029527}
+.fa-youtube {color:#A80000}
+.fa-rss {color:#ff921a}
+.fa-linkedin {color:#0073b2}
+.fa-envelope {color:#69b436}
+.fa-pinterest {color:#cb2027}
+.fa-google-plus {color:#f63e28}
+.share-buttons{text-align:center}
+.share-buttons .fa{margin:3px;text-shadow:0 1px 2px #acacac}
+.share-buttons .fa:hover{text-shadow:0 0 2px #333}

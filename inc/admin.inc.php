@@ -36,6 +36,7 @@
 				$sql = "UPDATE $table_settings SET home_socials = '$data';";
 				$wpdb->query($sql);
 			}
+
 		}
 
 		$videos = $wpdb->get_results("SELECT * FROM $table_videos;");
@@ -46,7 +47,7 @@
 		$widgets_disable = array(0,1,2,3,4);
 
 		$homepage_sections = array(
-			'A la une',
+			'Dernières vidéos',
 			'Catégories',
 			'Derniers articles',
 			'Réseaux sociaux',

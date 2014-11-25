@@ -1,7 +1,7 @@
 	<?php
 		//Libs
 	require_once( get_template_directory() . '/inc/homepage.inc.php' );
-	//require_once( get_template_directory() . '/inc/cinematheque.inc.php' );
+	require_once( get_template_directory() . '/inc/cinematheque.inc.php' );
 	require_once( get_template_directory() . '/inc/admin.inc.php' );
 	require_once( get_template_directory() . '/inc/customTheme.inc.php' );
 	require_once( get_template_directory() . '/inc/install.inc.php' );
@@ -62,14 +62,14 @@
 		$url = "http://ajax.googleapis.com/ajax/libs/jqueryui/".$queryui->ver."/themes/smoothness/jquery-ui.css";
 
 		wp_enqueue_style('jquery-ui-smoothness', $url, false, null);
-                
+
 		wp_register_script( 'prefix-js', get_template_directory_uri().'/public/js/ms-core.js' );
-                wp_deregister_script('jquery-ui');
-                wp_register_script('jquery-ui', ("//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"), false);
-                wp_enqueue_script('jquery-ui');
-                wp_register_script( 'mediasphere_cinematheque-js', get_template_directory_uri().'/public/js/mediasphere_cinematheque.js' );
+		wp_deregister_script('jquery-ui');
+		wp_register_script('jquery-ui', ("//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"), false);
+		wp_enqueue_script('jquery-ui');
+		wp_register_script( 'mediasphere_cinematheque-js', get_template_directory_uri().'/public/js/mediasphere_cinematheque.js' );
 		wp_enqueue_script( 'prefix-js' );
-                wp_enqueue_script( 'mediasphere_cinematheque-js' );
+		wp_enqueue_script( 'mediasphere_cinematheque-js' );
 	}
 
 		// Clean up the <head>
@@ -191,8 +191,7 @@ function getMediaSphereSettings(  )
         add_action('widgets_init', function(){
         	register_widget('mediasphere_widget');
         });
-        
+
         /**
          * Fin Widget
          */
-        
