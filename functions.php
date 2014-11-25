@@ -30,8 +30,8 @@
 		include('form.php');
 	}
 
-  // This tells WordPress to call the function named "setup_theme_admin_menus"
-  // when it's time to create the menu pages.
+	// This tells WordPress to call the function named "setup_theme_admin_menus"
+	// when it's time to create the menu pages.
 	add_action('admin_menu', 'setup_theme_admin_menus');
 	add_action('after_setup_theme', 'createMediaSphereTable');
 	add_action('after_setup_theme', 'createMediaSphereSettingsTable');
@@ -101,7 +101,7 @@
 
 	function createMediaSphereTable() {
 		global $wpdb;
-  // Creating the db
+	// Creating the db
 		if ( !defined('ABSPATH') )
 			define('ABSPATH', dirname(__FILE__) . '/');
 
@@ -120,7 +120,7 @@
 		}
 		$diff = array_diff(array_keys($elements), $results);
 
-  // If the columns in the DB and the var in get_elements are not the same
+	// If the columns in the DB and the var in get_elements are not the same
 		if (count($diff) > 0  ) {
 			$wpdb->query("DROP TABLE wp_mediasphere;");
 		}
@@ -129,7 +129,7 @@
 
 			foreach ($elements as $name => $type) {
 
-    // Set $sql_type
+		// Set $sql_type
 				switch ($type) {
 					case 'text':
 					$sql_type = 'varchar(72)';
@@ -211,15 +211,7 @@ function getMediaSphereSettings(  )
 	}
 	register_nav_menus( array(	'ms_top_menu' => 'Menu navigation top',) );
 
-
-        /**
-         * Debut Widget
-         */
-        include_once plugin_dir_path( __FILE__ ).'inc/mediasphere_widget.php';
-        add_action('widgets_init', function(){
-        	register_widget('mediasphere_widget');
-        });
-
-        /**
-         * Fin Widget
-         */
+	function cinematheque( ){
+		return ms_cinematheque();
+	}
+	add_shortcode( 'ms_cinematheque', 'cinematheque' );

@@ -1,12 +1,10 @@
 <?php get_header(); ?>
 <div id="ms_post">
-	<?php
-	cinematheque();
-
-	?>
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-		<h2 class="ms_title"><?php the_title(); ?></h2>
-		<div class="ms_meta"><?php include (TEMPLATEPATH . '/inc/meta.php' ); ?></div>
+		<header class="">
+			<h2 class="ms_title"><?php the_title(); ?></h2>
+			<div class="ms_meta"><?php include (TEMPLATEPATH . '/inc/meta.php' ); ?></div>
+		</header>
 		<section class="ms_article">
 			<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
 				<div class="entry">
@@ -21,6 +19,5 @@
 		</section>
 	<?php endwhile; endif; ?>
 </div>
-<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>

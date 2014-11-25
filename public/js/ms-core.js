@@ -1,4 +1,31 @@
 jQuery(window).load(function(){
+        var youtube_dialog = $("#youtube_dialog");
+	youtube_dialog.dialog({
+		autoOpen: false,
+		width: 620,
+		height:400,
+		modal: true,
+		title: 'Cinémathèque'
+	});
+        
+        youtube_dialog.keypress(function(e) {
+            if (e.keyCode === 27) {
+                $("#youtube_dialog").dialog('close');
+            } 
+        });
+
+	jQuery( ".show_yt" ).click(function(event) {
+		event.preventDefault();
+		var youtube_value = jQuery(this).attr('data-value');
+
+		console.log(youtube_value);
+		var youtube_object = "<iframe width='560' height='315' src='//www.youtube.com/embed/" + youtube_value + "' frameborder='0' allowfullscreen></iframe>";
+		jQuery('#youtube_dialog').html(youtube_object);
+	//	jQuery('#youtube_dialog').dialog('option', 'title', 'My New title');
+	jQuery('#youtube_dialog').dialog('open');
+});
+
+
 
 	jQuery( "#ms_admin_tabs" ).tabs();
 	jQuery( "#homepage-tabs" ).accordion({

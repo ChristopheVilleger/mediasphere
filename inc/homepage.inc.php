@@ -33,7 +33,7 @@ function ms_homepage() {
 			echo $callable_name();
 	}
 	echo '</div>';
-	echo ms_sidebar();
+	//echo ms_sidebar();
 
 }
 
@@ -55,18 +55,37 @@ function ms_featured( ) {
 	echo'<!-- Featured  -->';
 	?>
 	<section id="ms_featured">
-		<h2 class="ms_title">A la une</h2>
-		<div class="clear">
-			<div class="ms_featured_section ">
-				<figure>
-					<img src="http://www.mairie-villetaneuse.fr/images/villetaneuse/actus/2014_10/cap_quartiers.jpg" alt="">
-					<figcaption>Proposition pour le thème</figcaption>
-				</figure>
-			</div>
+		<h2 class="ms_title">Dernières vidéos</h2>
+		<div class="clear"  id="cinematheque_thumbnails">
+			<?php
+			global $wpdb;
+			$results = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix. "mediasphere");
+			$medias_array = array();
+			foreach($results as $media_object){
+			//echo $media_object->title ;
+			//echo $media_object->release_date ;
+			//echo $media_object->category ;
+				$youtube_link = $media_object->youtube_link;
+				$value = substr($youtube_link, -11);
+				echo '<div class="ms_featured_section ">';
+				echo '';
+				echo '<figure>';
+				echo '<img src="http://img.youtube.com/vi/' . $value .'/mqdefault.jpg" alt="">';
+				echo '<figcaption>'.$media_object->title.'  <span data-value="'.$value.'" class="show_yt fa fa-3x fa-eye"></span></figcaption>';
+				echo '</figure>';
+				echo '</div>';
+			}
+
+			?>
 		</div>
-	</section>
-	<?php
-	echo '<!-- Featured  -->';
+
+		<div id="youtube_dialog">
+		</div>
+	</div>
+</div>
+</section>
+<?php
+echo '<!-- Featured  -->';
 }
 
 
@@ -77,12 +96,11 @@ function ms_categories( ) {
 	<section id="ms_categories">
 		<h2 class="ms_title">Catégories</h2>
 		<div class="clear">
-			<a href="" title="" class="redBG">Catégorie 1</a>
-			<a href="" title="" class="redBG">Catégorie 2</a>
-			<a href="" title="" class="redBG">Catégorie 3</a>
-			<a href="" title="" class="redBG">Catégorie 4</a>
-			<a href="" title="" class="redBG">Catégorie 5</a>
-			<a href="" title="" class="redBG">Catégorie 6</a>
+                    <?php
+                        foreach(get_categories() as $cat) { 
+                            echo "<a href='?cat=$cat->cat_ID' title='' class='redBG'>$cat->cat_name</a>" ;
+                        }
+                    ?> 
 		</div>
 	</section>
 

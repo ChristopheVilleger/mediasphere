@@ -26,7 +26,6 @@
 			</nav>
 			<div class="clear"></div>
 		</header>
-
 		<?php
 		if(is_home() )
 			ms_homepage();
