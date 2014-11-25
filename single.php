@@ -1,9 +1,6 @@
 <?php get_header(); ?>
 <div id="ms_post">
-	<?php
-	cinematheque();
 
-	?>
 	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 		<h2 class="ms_title"><?php the_title(); ?></h2>
 		<div class="ms_meta"><?php include (TEMPLATEPATH . '/inc/meta.php' ); ?></div>

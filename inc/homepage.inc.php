@@ -66,26 +66,21 @@ function ms_featured( ) {
 			//echo $media_object->release_date ;
 			//echo $media_object->category ;
 				$youtube_link = $media_object->youtube_link;
-				$medias_array[] = substr($youtube_link, -11);
-			}
-			foreach($medias_array as $value) {
+				$value = substr($youtube_link, -11);
 				echo '<div class="ms_featured_section ">';
+				echo '';
 				echo '<figure>';
 				echo '<img src="http://img.youtube.com/vi/' . $value .'/mqdefault.jpg" alt="">';
-				echo '<figcaption>Proposition pour le thème</figcaption>';
+				echo '<figcaption>'.$media_object->title.'  <span data-value="'.$value.'" class="show_yt fa fa-3x fa-eye"></span></figcaption>';
 				echo '</figure>';
 				echo '</div>';
 			}
+
 			?>
 		</div>
-		<script>
-			$( ".thumbnail" ).click(function() {
-				var youtube_value = $(this).data('value');
-				var youtube_object = "<iframe width='560' height='315' src='//www.youtube.com/embed/" + youtube_value + "' frameborder='0' allowfullscreen></iframe>";
-				$('#mediatheque_iframe').html(youtube_object);
-			});
-		</script>
-		?>
+
+		<div id="youtube_dialog">
+		</div>
 	</div>
 </div>
 </section>
