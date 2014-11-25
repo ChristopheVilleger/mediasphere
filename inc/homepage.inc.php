@@ -6,20 +6,32 @@
  */
 
 function ms_homepage() {
+	global $wpdb;
+
+	$table_name = $wpdb->prefix. "mediasphere";
+	$table_videos = $wpdb->base_prefix."mediasphere";
+	$table_settings = $wpdb->base_prefix."mediasphere_settings";
+	$settingss = $wpdb->get_results("SELECT * FROM $table_settings;");
+	$settings = $settingss[0];
+
+	$widgets_active = split(',', str_replace('"', "", $settings->home_widgets_order));
+
+	$functions = array (
+		'ms_featured',
+		'ms_categories',
+		'ms_last_articles',
+		'ms_social_network',
+		'ms_search'
+		);
 
 	echo ms_top_menu();
 
-	echo ms_featured();
+	foreach ($widgets_active as $value) {
+		if(is_callable($functions[$value], false, $callable_name))
+			echo $callable_name();
+	}
 
-	echo ms_categories();
-        
-        echo ms_sidebar();
-
-	echo ms_search();
-
-	echo ms_social_network();
-
-	echo ms_last_articles();
+	echo ms_sidebar();
 
 }
 
@@ -77,14 +89,8 @@ function ms_categories( ) {
 }
 
 function ms_sidebar( ) {
-    	echo'<!-- Sidebar  -->';
-        include_once TEMPLATEPATH . '/sidebar.php';
-        /**
-         * Content for Mediatheque
-         */
-        ?>
-        <div id="cinematheque_dialog" title="Basic dialog" style="display:none"></div>
-        <?php
+	echo'<!-- Sidebar  -->';
+	include_once TEMPLATEPATH . '/sidebar.php';
 	echo'<!-- END Sidebar  -->';
 }
 

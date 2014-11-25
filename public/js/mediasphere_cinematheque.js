@@ -9,30 +9,26 @@ jQuery( document ).ready(function( $ ) {
             var options = {
                 title: "Ma Cinémathèque",
                 draggable : true,
-                height : 500,
-                width : 1000,
+                height : 600,
+                width : 800,
                 maxHeight: 1000,
-                maxWidth: 1200,
-                minHeight: 500,
-                minWidth: 1000,
-                //position: { my: "center", at: "center", of: window }, //Default
+                maxWidth: 1000,
+                minHeight: 600,
+                minWidth: 800,
+                position: { my: "center", at: "center", of: window }, //Default
                 resizable: true,
+                
             };
             $('#cinematheque_dialog').dialog(options);
             $('#cinematheque_dialog iframe').show();
-            //disable_scroll();
         });
-        
 
         $(document).keypress(function(e) { 
             if (e.keyCode === 27) { //if Escape
                 $("#cinematheque_dialog").fadeOut(500);
             } 
         });
-        
 
-        
-        
 //        /**
 //         * 
 //         * To disable scroll event
@@ -75,7 +71,6 @@ jQuery( document ).ready(function( $ ) {
 //            }
 //            window.onmousewheel = document.onmousewheel = document.onkeydown = null;  
 //        }
-
 
     });
   

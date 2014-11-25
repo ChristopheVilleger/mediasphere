@@ -32,22 +32,39 @@ function current_order(el){
 	}
 
 	var selectedItem = null;
-	var selectedValues = null;
+	var selectedValues = [];
+
 	jQuery("#btnLeft").click(function () {
 		selectedItem = jQuery("#rightValues option:selected");
 		jQuery("#leftValues").append(selectedItem);
+
+		selectedValues = [];
+		jQuery("#leftValues option").each(function(){
+			selectedValues.push(jQuery(this).val());
+		});
+		jQuery("#values").val(selectedValues);
+
 	});
 
 	jQuery("#btnRight").click(function () {
 		selectedItem = jQuery("#leftValues option:selected");
 		jQuery("#rightValues").append(selectedItem);
+
+		selectedValues = [];
+		jQuery("#leftValues option").each(function(){
+			selectedValues.push(jQuery(this).val());
+		});
+		jQuery("#values").val(selectedValues);
+
 	});
 
 	jQuery("#rightValues").change(function () {
 		selectedItem = jQuery("#rightValues option:selected");
 	});
 
-	jQuery("#ms_widgets_admin button").click(function () {
-		selectedValues = jQuery("#leftValues").val();
-		console.log(selectedValues);
+/*
+	jQuery("#update_homepage_order").submit(function (event) {
+		event.preventDefault();
+		event.stopPropagation();
 	});
+*/

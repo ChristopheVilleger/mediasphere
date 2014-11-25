@@ -5,21 +5,62 @@ include('helpers/get_elements.php');
 include('helpers/form_validator.php');
 include('helpers/delete_element.php');
 ?>
+<style>
+h1 {
+  font-size: 48px;
+  text-shadow: -1px -1px #9df, 1px 1px #49d, -3px 0 4px #000;
+  font-family:"Segoe print", Arial, Helvetica, sans-serif;
+  color:#6bf;
+  padding:24px 32px 32px 32px;
+  font-weight:lighter;
+  text-align:center;
+  display:inline;
+  line-height:150px;
+}
 
-<h1 class='mediasphereTitle'>Add a film</h1>
+th {
+  font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica,
+  sans-serif;
+  color: #6D929B;
+  border-right: 1px solid #C1DAD7;
+  border-bottom: 1px solid #C1DAD7;
+  border-top: 1px solid #C1DAD7;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 6px 6px 6px 12px;
+  background: #CAE8EA url(images/bg_header.jpg) no-repeat;
+}
+td {
+  border-right: 1px solid #C1DAD7;
+  border-bottom: 1px solid #C1DAD7;
+  background: #fff;
+  padding: 6px 6px 6px 12px;
+  color: #777;
+}
+td.even {
+  background: #a5dede;
+}
+</style>
+<div style='text-align: center'>
+	<h1>Customize the MediaSphere Plugin</h1>
+</div>
+<br />
+<h2 class='mediasphereTitle' style='font-weight: bold;'>Add a film</h2>
 <br />
 
-<div style="width: 40%; border: 1px solid red; float: left">
+<div style="width: 40%; float: left">
 	<form id="mediasphereForm" method='post' action='<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>'>
 		<table>
 			<?php
+      $even = true;
 			foreach ($elements as $name => $type) {
-
+        $even = !$even;
 				echo "<tr>
-				<td>
+				<td class=".($even == true ? 'even' : 'odd').">
 					$name:
 				</td>
-				<td>
+        <td class=".($even == true ? 'even' : 'odd').">
 					".get_field($name, $type)."
 				</td>
 			</tr>";
@@ -43,16 +84,19 @@ include('helpers/delete_element.php');
 <?php include('helpers/index.php'); ?>
 
 </div>
-<div id='preview' style="width: 55%; border: 1px solid red; float: right">
+<div id='preview' style="width: 50%; float: right">
 
 </div>
 
 <script>
+  function addYoutubeVideo(id) {
+    $('#preview').empty();
+    $('#preview').append('<iframe width="560" height="315" src="http://www.youtube.com/embed/' + id + '" frameborder="0"></iframe>');
+  }
 	$("input[name='youtube_link']").on('input', function() {
 		if ($(this).val().match('youtube.com/') || $(this).val().match('youtu.be/') ) {
 			id = $(this).val().split('=')[1];
-      $('#preview').empty();
-			$('#preview').append('<iframe width="560" height="315" src="http://www.youtube.com/embed/' + id + '" frameborder="0"></iframe>');
+      addYoutubeVideo(id);
 		}
 		else {
 			alert('Error: Bad Youtube link');
