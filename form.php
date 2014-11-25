@@ -5,21 +5,46 @@ include('helpers/get_elements.php');
 include('helpers/form_validator.php');
 include('helpers/delete_element.php');
 ?>
-
+<style>
+th {
+  font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica,
+  sans-serif;
+  color: #6D929B;
+  border-right: 1px solid #C1DAD7;
+  border-bottom: 1px solid #C1DAD7;
+  border-top: 1px solid #C1DAD7;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: left;
+  padding: 6px 6px 6px 12px;
+  background: #CAE8EA url(images/bg_header.jpg) no-repeat;
+}
+td {
+  border-right: 1px solid #C1DAD7;
+  border-bottom: 1px solid #C1DAD7;
+  background: #fff;
+  padding: 6px 6px 6px 12px;
+  color: #777;
+}
+td.even {
+  background: #a5dede;
+}
+</style>
 <h1 class='mediasphereTitle'>Add a film</h1>
 <br />
 
-<div style="width: 40%; border: 1px solid red; float: left">
+<div style="width: 40%; float: left">
 	<form id="mediasphereForm" method='post' action='<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>'>
 		<table>
 			<?php
+      $even = true;
 			foreach ($elements as $name => $type) {
-
+        $even = !$even;
 				echo "<tr>
-				<td>
+				<td class=".($even == true ? 'even' : 'odd').">
 					$name:
 				</td>
-				<td>
+        <td class=".($even == true ? 'even' : 'odd').">
 					".get_field($name, $type)."
 				</td>
 			</tr>";
@@ -43,7 +68,7 @@ include('helpers/delete_element.php');
 <?php include('helpers/index.php'); ?>
 
 </div>
-<div id='preview' style="width: 55%; border: 1px solid red; float: right">
+<div id='preview' style="width: 50%; float: right">
 
 </div>
 
