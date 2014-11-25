@@ -83,9 +83,7 @@ function ms_sidebar( ) {
          * Content for Mediatheque
          */
         ?>
-        <div id="cinematheque_dialog" title="Basic dialog" style="display:none">
-            <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
-        </div>
+        <div id="cinematheque_dialog" title="Basic dialog" style="display:none"></div>
         <?php
 	echo'<!-- END Sidebar  -->';
 }
