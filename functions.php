@@ -190,7 +190,7 @@ function getMediaSphereSettings(  )
         add_action('widgets_init', function(){
         	register_widget('mediasphere_widget');
         });
-
+        
         /**
          * Fin Widget
          */
