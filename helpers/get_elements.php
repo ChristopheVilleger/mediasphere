@@ -1,5 +1,5 @@
 <?php
-  $elements = array('name'         => 'text',
+  $elements = array('title'         => 'text',
         				    'release_date' => 'date',
         				    'category'     => 'text',
         				    'youtube_link' => 'text');
