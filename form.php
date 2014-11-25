@@ -73,11 +73,14 @@ td.even {
 </div>
 
 <script>
+  function addYoutubeVideo(id) {
+    $('#preview').empty();
+    $('#preview').append('<iframe width="560" height="315" src="http://www.youtube.com/embed/' + id + '" frameborder="0"></iframe>');
+  }
 	$("input[name='youtube_link']").on('input', function() {
 		if ($(this).val().match('youtube.com/') || $(this).val().match('youtu.be/') ) {
 			id = $(this).val().split('=')[1];
-      $('#preview').empty();
-			$('#preview').append('<iframe width="560" height="315" src="http://www.youtube.com/embed/' + id + '" frameborder="0"></iframe>');
+      addYoutubeVideo(id);
 		}
 		else {
 			alert('Error: Bad Youtube link');

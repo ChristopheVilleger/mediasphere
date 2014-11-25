@@ -35,10 +35,15 @@ $('.edit').on('click', function() {
   elements.splice(-1,1);
 
   $.each(elements , function(i, val) { 
+    if(val.innerHTML.match('youtu')) {
+      // Add youtube video
+      addYoutubeVideo(val.innerHTML.split('=')[1]);
+    }
     $("input[id="+table_attributes[i].innerHTML+"]").val(val.innerHTML);
   });
    
   elementId = $('#elementId');
+
 });
 $('body').on('click', '#reload', function() {
   location.reload();
