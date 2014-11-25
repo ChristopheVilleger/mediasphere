@@ -84,8 +84,7 @@
 			<ul>
 				<li><a href="#tabs-1">Général</a></li>
 				<li><a href="#tabs-2">Page d'accueil</a></li>
-				<li><a href="#tabs-3">Pages</a></li>
-				<li><a href="#tabs-4">Cinémathèque</a></li>
+				<li><a href="#tabs-3">Cinémathèque</a></li>
 			</ul>
 			<div  id="tabs-1">
 				<?php
@@ -184,12 +183,8 @@
 					</form>
 				</section>
 			</div>
+
 			<div  id="tabs-3">
-				<h2>Pages</h2>
-				Vous pouvez choisir la disposition des différents éléments sur la page d'accueil. Modifier l'ordre, activer ou
-				désactiver certains modules.
-			</div>
-			<div  id="tabs-4">
 				<h2>Cinémathèque</h2>
 				Vous trouverez ici les différents paramètres vous permettant de régler votre cinémathèque.
 
