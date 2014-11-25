@@ -6,6 +6,18 @@ include('helpers/form_validator.php');
 include('helpers/delete_element.php');
 ?>
 <style>
+h1 {
+  font-size: 48px;
+  text-shadow: -1px -1px #9df, 1px 1px #49d, -3px 0 4px #000;
+  font-family:"Segoe print", Arial, Helvetica, sans-serif;
+  color:#6bf;
+  padding:24px 32px 32px 32px;
+  font-weight:lighter;
+  text-align:center;
+  display:inline;
+  line-height:150px;
+}
+
 th {
   font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica,
   sans-serif;
@@ -30,7 +42,11 @@ td.even {
   background: #a5dede;
 }
 </style>
-<h1 class='mediasphereTitle'>Add a film</h1>
+<div style='text-align: center'>
+	<h1>Customize the MediaSphere Plugin</h1>
+</div>
+<br />
+<h2 class='mediasphereTitle' style='font-weight: bold;'>Add a film</h2>
 <br />
 
 <div style="width: 40%; float: left">
