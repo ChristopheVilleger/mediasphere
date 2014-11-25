@@ -1,6 +1,7 @@
 	<?php
 		//Libs
 	require_once( get_template_directory() . '/inc/homepage.inc.php' );
+	require_once( get_template_directory() . '/inc/cinematheque.inc.php' );
 	require_once( get_template_directory() . '/inc/admin.inc.php' );
 	require_once( get_template_directory() . '/inc/customTheme.inc.php' );
 	require_once( get_template_directory() . '/inc/install.inc.php' );
@@ -130,7 +131,7 @@
     // Set $sql_type
 				switch ($type) {
 					case 'text':
-					$sql_type = 'varchar(36)';
+					$sql_type = 'varchar(72)';
 					break;
 					case 'number':
 					$sql_type = 'int(11)';
