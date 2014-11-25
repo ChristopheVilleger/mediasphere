@@ -1,3 +1,46 @@
-#btn_widget{
-    background-color: silver;
+#btn_widget_mediasphere{
+    box-shadow: 0 0 30px 5px #000000;
+    display: block;
+    margin: 2px;
+    padding: 0.6rem 1.9rem;
+    background-image: url('../../images/btn_cinematheque.jpg') ;
+    width: 73px;
+    height: 4px;
+    border-radius: 10%;
+}
+
+.widget_mediasphere_widget{
+    cursor: pointer;
+}
+
+.themodal-lock { 
+	overflow: hidden; //removing scrollbars from the main content
+}
+
+.themodal-overlay {
+	/* overlay will stay fixed and will take all the space available */
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	top: 0;
+	right: 0;
+	z-index: 100;
+
+	/* if modal content doesn't fit inside the overlay, display scrollbars */
+	overflow: auto;
+
+	/* allow one-finger iPad scrolling */
+	-webkit-overflow-scrolling: touch;
+
+}
+
+.themodal-overlay > * {
+	-webkit-transform: translateZ(0px);
+}
+
+.themodal-overlay {
+	background: rgba(0, 0, 0, 0.5);
+	/* IE6–IE8 */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = #7F000000, endColorstr = #7F000000);
+	zoom: 1;
 }
